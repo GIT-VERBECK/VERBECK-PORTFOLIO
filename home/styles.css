@@ -23,6 +23,25 @@ body {
 
 }
 
+/* Mode sombre */
+body.dark h3 {
+  color: #ffffff !important;
+}
+
+body.dark input{
+    background: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid #475569 !important;
+}
+
+body.dark textarea{
+    background: #1e293b !important;
+        color: #ffffff !important;
+    border: 1px solid #475569 !important;
+
+
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -307,13 +326,14 @@ body {
 
 .btn-secondary {
     background: transparent;
-    color: white;
+    color: #111827;
     border: 2px solid white;
 }
 
 .btn-secondary:hover {
     background: white;
     color: #111827;
+    border: 2px solid rgb(52, 50, 50);
     transform: translateY(-1px);
 }
 
@@ -5923,6 +5943,10 @@ body.dark .footer-section h4 {
 body.dark .footer-section a {
     color: #94a3b8;
 }
+body.dark .footer-section p {
+    color: #94a3b8;
+}
+ 
 
 body.dark .footer-section a:hover {
     color: #fbbf24;

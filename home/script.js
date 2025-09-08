@@ -135,9 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2600);
     }
 
-    // Effet de parallaxe désactivé (pour éviter conflits avec demi-dégradé)
-    // window.addEventListener('scroll', () => { /* no-op */ });
-
     // Animation des cartes (légère)
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
@@ -174,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     updateVisitorCount();
 
-    // Effet typewriter désactivé pour sobriété
     // Thème (dark / light) avec persistance
     const THEME_KEY = 'jm_theme';
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -303,9 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Animation des particules flottantes
         createFloatingParticles();
 
-        // Animation du scroll avec parallaxe
-        initParallaxScroll();
-
         // Animation des éléments au scroll
         initScrollAnimations();
     }
@@ -324,19 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
             particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
             hero.appendChild(particle);
         }
-    }
-
-    // Animation du scroll avec parallaxe
-    function initParallaxScroll() {
-        const parallaxElements = document.querySelectorAll('.floating-card, .profile-card');
-        
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            parallaxElements.forEach(element => {
-                const speed = 0.5;
-                element.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
     }
 
     // Animations au scroll avancées
@@ -429,195 +409,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Appeler les animations après le chargement
     setTimeout(initAllAnimations, 100);
 });
-
-// ... existing code ...
-
-    // Nouvelles animations avancées
-    function initAdvancedAnimations() {
-        // Animation des cartes au survol
-        const cards = document.querySelectorAll('.project-card, .skill-category, .stat-card');
-        cards.forEach(card => {
-            card.classList.add('hover-lift');
-        });
-
-        // Animation des boutons
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(btn => {
-            btn.classList.add('hover-scale');
-        });
-
-        // Animation des icônes
-        const icons = document.querySelectorAll('.profile-avatar i, .floating-card .card-icon i');
-        icons.forEach(icon => {
-            icon.classList.add('animate-float');
-        });
-
-        // Animation des titres de section
-        const sectionTitles = document.querySelectorAll('.section-title');
-        sectionTitles.forEach(title => {
-            title.classList.add('animate-slide-in-left');
-        });
-
-        // Animation des éléments de la timeline
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.2}s`;
-            item.classList.add('animate-fade-in-up');
-        });
-
-        // Animation des compétences avec délai
-        const skillItems = document.querySelectorAll('.skill-item');
-        skillItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-            item.classList.add('animate-slide-in-right');
-        });
-
-        // Animation des projets avec délai
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.15}s`;
-            card.classList.add('animate-scale-in');
-        });
-
-        // Animation des statistiques
-        const statCards = document.querySelectorAll('.stat-card');
-        statCards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-            card.classList.add('animate-rotate-in');
-        });
-
-        // Animation du hero avec effet de typewriter
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            heroTitle.classList.add('animate-typing');
-        }
-
-        // Animation des particules flottantes
-        createFloatingParticles();
-
-        // Animation du scroll avec parallaxe
-        initParallaxScroll();
-
-        // Animation des éléments au scroll
-        initScrollAnimations();
-    }
-
-    // Créer des particules flottantes
-    function createFloatingParticles() {
-        const hero = document.querySelector('.hero');
-        if (!hero) return;
-
-        for (let i = 0; i < 8; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'floating-particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            hero.appendChild(particle);
-        }
-    }
-
-    // Animation du scroll avec parallaxe
-    function initParallaxScroll() {
-        const parallaxElements = document.querySelectorAll('.floating-card, .profile-card');
-        
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            parallaxElements.forEach(element => {
-                const speed = 0.5;
-                element.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-    }
-
-    // Animations au scroll avancées
-    function initScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Animation d'entrée avec effet de rebond
-                    entry.target.style.animation = 'fadeInUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
-                    
-                    // Ajouter des classes d'animation selon le type d'élément
-                    if (entry.target.classList.contains('skill-category')) {
-                        entry.target.classList.add('animate-slide-in-left');
-                    } else if (entry.target.classList.contains('project-card')) {
-                        entry.target.classList.add('animate-scale-in');
-                    } else if (entry.target.classList.contains('timeline-item')) {
-                        entry.target.classList.add('animate-fade-in-up');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observer tous les éléments animables
-        document.querySelectorAll('.skill-category, .project-card, .timeline-item, .stat-card').forEach(el => {
-            observer.observe(el);
-        });
-    }
-
-    // Animation de la barre de progression des compétences
-    function animateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
-        skillBars.forEach(bar => {
-            const width = bar.getAttribute('data-width') || '80%';
-            bar.style.width = '0%';
-            
-            setTimeout(() => {
-                bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                bar.style.width = width;
-            }, 500);
-        });
-    }
-
-    // Animation des cartes avec effet de brillance
-    function addShimmerEffect() {
-        const cards = document.querySelectorAll('.project-card, .skill-category');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.classList.add('animate-shimmer');
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.classList.remove('animate-shimmer');
-            });
-        });
-    }
-
-    // Animation du compteur de visiteurs avec effet de rebond
-    function animateVisitorCounter() {
-        const counter = document.querySelector('.visitor-counter');
-        if (!counter) return;
-
-        let count = 0;
-        const target = 1234;
-        const increment = target / 50;
-        
-        const timer = setInterval(() => {
-            count += increment;
-            if (count >= target) {
-                count = target;
-                clearInterval(timer);
-                counter.classList.add('animate-pulse');
-            }
-            counter.textContent = Math.floor(count);
-        }, 50);
-    }
-
-    // Initialiser toutes les animations
-    function initAllAnimations() {
-        initAdvancedAnimations();
-        animateSkillBars();
-        addShimmerEffect();
-        animateVisitorCounter();
-    }
-
-    // Appeler les animations après le chargement
-    setTimeout(initAllAnimations, 100);
- 
